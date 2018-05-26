@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <com.lucasurbas.listitemview.ListItemView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/listItemMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    android:paddingLeft="7dp"
+        app:liv_menuActionColor="#000000">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <ImageView
+            android:id="@+id/itemIcon"
+            android:layout_width="55px"
+            android:layout_height="55px"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/listTitle_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/itemIcon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:textColor="#000000"
+            android:textSize="16dip"/>
+        <ProgressBar
+            android:id="@+id/itemPrgrsBar"
+            android:layout_width="180dp"
+            android:layout_height="7dp"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:progressTint="#7DA7C8"
+            android:layout_toEndOf="@id/itemIcon"
+            android:layout_below="@id/listTitle_text"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:progress="20"
+            android:max="100"/>
+
+    </RelativeLayout>
+
+
+
+
+    </com.lucasurbas.listitemview.ListItemView>
+
