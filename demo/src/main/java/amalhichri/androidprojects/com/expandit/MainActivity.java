@@ -15,9 +15,9 @@ import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.E
 public class MainActivity extends Activity {
 
 
-    private ArrayList<String> listItemsTitles=new ArrayList<>();
-    private HashMap<Integer,ArrayList> listData= new HashMap<>();
-    private ArrayList<Integer> listItemsIcons = new ArrayList<>();
+    private ArrayList<String> listItemsTitles;
+    private HashMap<Integer,ArrayList> listData;
+    private ArrayList<Integer> listItemsIcons;
     private MenuBuilder myMenu;
 
     @SuppressLint({"RestrictedApi", "ResourceType"})
@@ -26,20 +26,26 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listItemsTitles.add("Item 1");
-        listItemsTitles.add("Item 2");
-        listItemsTitles.add("Item 3");
+        listItemsTitles =  new ArrayList<>(Arrays.asList("Overview","Getting started","Basics","Classes and objects","Functions and lambdas"
+        ,"Others","Java Interop","Javascript"));
 
-        ArrayList<String > expandedItems1 =  new ArrayList<>(Arrays.asList("xyz", "abc","ijkd"));
+        listItemsIcons =  new ArrayList<>(Arrays.asList(R.drawable.ic_overview,R.drawable.ic_start,R.drawable.ic_basics,R.drawable.ic_classesobjects
+        ,R.drawable.ic_functions,R.drawable.ic_others,R.drawable.ic_java,R.drawable.ic_javascript));
 
-        listItemsIcons.add(R.drawable.ic_java);
-        listItemsIcons.add(R.drawable.ic_javascript);
-        listItemsIcons.add(R.drawable.ic_javascript);
-
-        listData.put(0,expandedItems1);
-        listData.put(1,expandedItems1);
-        listData.put(2,expandedItems1);
-
+        final ArrayList<String > expandedItems1 =  new ArrayList<>(Arrays.asList("chapter 1", "chapter 2","chapter 2"));
+        final ArrayList<String > expandedItems2 =  new ArrayList<>(Arrays.asList("1st chapter", "2nd chapter","3d chapter"));
+        listData = new HashMap<Integer,ArrayList>(){
+            {
+                put(0,expandedItems1);
+                put(1,expandedItems2);
+                put(2,expandedItems1);
+                put(3,expandedItems2);
+                put(4,expandedItems1);
+                put(5,expandedItems2);
+                put(6,expandedItems1);
+                put(7,expandedItems2);
+            }
+        };
         myMenu = new MenuBuilder(getApplicationContext());
         myMenu.add(R.menu.my_menu);
 
@@ -47,7 +53,7 @@ public class MainActivity extends Activity {
         (findViewById(R.id.testBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,listItemsTitles,listData,listItemsIcons,myMenu)).show();
+                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu)).show();
             }
         });
     }

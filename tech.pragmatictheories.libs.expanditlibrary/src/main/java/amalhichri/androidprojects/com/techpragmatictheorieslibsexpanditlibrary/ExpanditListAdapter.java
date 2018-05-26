@@ -26,7 +26,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     private MenuBuilder listItemMenu;
 
 
-    public ExpanditListAdapter(Context context, List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu) {
+    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu) {
         this.context = context;
         this.listItemsTitles = listItemsTitles;
         this.listData= listData;
@@ -56,7 +56,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.listData.get(this.listItemsTitles.get(groupPosition)).size();
+        return this.listData.get(groupPosition).size();
     }
 
     @Override
@@ -86,6 +86,10 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
         ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
         ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
         return convertView;
+    }
+
+    public static void customizeItemDetailsView(View v){
+       // ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
     }
 
     @Override
