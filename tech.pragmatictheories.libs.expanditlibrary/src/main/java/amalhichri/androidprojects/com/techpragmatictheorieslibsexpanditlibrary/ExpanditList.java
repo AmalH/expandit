@@ -18,6 +18,7 @@ public class ExpanditList extends Dialog {
     private MenuBuilder listItemMenu;
     private String title;
 
+
     public ExpanditList(Context context){
         super(context);
     }
@@ -34,6 +35,17 @@ public class ExpanditList extends Dialog {
         ((ExpandableListView)this.findViewById(R.id.expandableLvw)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listItemMenu));
     }
 
+    public ExpanditList(@NonNull Context context,String title,ArrayList<String> listItemsTitles,HashMap<Integer, ArrayList> listData,ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu,int view) {
+
+        super(context);
+        this.listItemsIcons = listItemsIcons;
+        this.listData = listData;
+        this.listItemsIcons = listItemsIcons;
+        this.listItemMenu= listItemMenu;
+        this.setContentView(R.layout.expanditlistview);
+        ((TextView)findViewById(R.id.listTitle)).setText(title);
+        ((ExpandableListView)this.findViewById(R.id.expandableLvw)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listItemMenu,view));
+    }
 
     public MenuBuilder getListItemMenu() {
         return listItemMenu;

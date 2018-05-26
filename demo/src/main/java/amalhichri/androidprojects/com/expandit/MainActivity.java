@@ -49,11 +49,24 @@ public class MainActivity extends Activity {
         myMenu = new MenuBuilder(getApplicationContext());
         myMenu.add(R.menu.my_menu);
 
-
-        (findViewById(R.id.testBtn)).setOnClickListener(new View.OnClickListener() {
+        (findViewById(R.id.defaultUiBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu)).show();
+            }
+        });
+
+        (findViewById(R.id.customUiBtn1)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
+            }
+        });
+
+        (findViewById(R.id.customUiBtn2)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
             }
         });
     }

@@ -2,11 +2,13 @@ package amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary;
 
 import android.content.Context;
 import android.support.v7.view.menu.MenuBuilder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lucasurbas.listitemview.ListItemView;
@@ -24,7 +26,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     private HashMap<Integer, ArrayList> listData;
     private ArrayList<Integer> listItemsIcons;
     private MenuBuilder listItemMenu;
-
+    private int customItemDetailsView=0;
 
     public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu) {
         this.context = context;
@@ -32,6 +34,15 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
         this.listData= listData;
         this.listItemsIcons= listItemsIcons;
         this.listItemMenu= listItemMenu;
+    }
+
+    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu,int customItemDetailsView) {
+        this.context = context;
+        this.listItemsTitles = listItemsTitles;
+        this.listData= listData;
+        this.listItemsIcons= listItemsIcons;
+        this.listItemMenu= listItemMenu;
+        this.customItemDetailsView = customItemDetailsView;
     }
 
     @Override
@@ -80,17 +91,27 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
         String title = (String) getGroup(groupPosition);
         final int  courseIcon = listItemsIcons.get(groupPosition);
 
-        if (convertView == null)
-            convertView = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
-        ((TextView) convertView.findViewById(R.id.listTitle_text)).setText(title);
-        ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
-        ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
+        if (convertView == null && customItemDetailsView==0){
+                convertView = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
+                ((TextView) convertView.findViewById(R.id.listTitle_text)).setText(title);
+                ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
+                ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
+            }
+            else if(convertView == null && customItemDetailsView!=0){
+                Log.d("TEST","No No");
+                Log.d("TEST 2","No "+String.valueOf(customItemDetailsView));
+                convertView = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
+                ((TextView) convertView.findViewById(R.id.listTitle_text)).setText(title);
+                (convertView.findViewById(R.id.itemDetails)).setVisibility(View.GONE);
+                View viewToAdd = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(customItemDetailsView, null);
+                if(viewToAdd.getParent()!=null)
+                    ((ViewGroup)viewToAdd.getParent()).removeView(viewToAdd);
+                ((LinearLayout)convertView.findViewById(R.id.itemDetailsContainer)).addView(viewToAdd);
+                ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
+                ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
+            }
         return convertView;
-    }
-
-    public static void customizeItemDetailsView(View v){
-       // ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
-    }
+        }
 
     @Override
     public boolean hasStableIds() {
