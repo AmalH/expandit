@@ -50,7 +50,8 @@ public class MainActivity extends Activity {
             }
         };
         myMenu = new MenuBuilder(getApplicationContext());
-        myMenu.add(R.menu.my_menu);
+        myMenu.add(R.string.menuitem1);
+        myMenu.add(R.string.menuitem1);
 
         /**-------------------------------------- default list  ------------------------------------**/
         (findViewById(R.id.defaultUiBtn)).setOnClickListener(new View.OnClickListener() {
