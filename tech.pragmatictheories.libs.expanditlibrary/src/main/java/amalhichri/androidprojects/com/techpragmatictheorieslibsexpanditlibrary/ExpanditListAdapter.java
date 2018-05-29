@@ -25,6 +25,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     private List listItemsTitles;
     private HashMap<Integer, ArrayList> listData;
     private ArrayList<Integer> listItemsIcons;
+    private ArrayList<String> defaultListItemsDetails;
     private MenuBuilder listItemMenu;
     private int customItemDetailsView=0;
     private int  itemIcon;
@@ -33,13 +34,6 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
         this.context = context;
     }
 
-    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu) {
-        this.context = context;
-        this.listItemsTitles = listItemsTitles;
-        this.listData= listData;
-        this.listItemsIcons= listItemsIcons;
-        this.listItemMenu= listItemMenu;
-    }
 
     public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu,int customItemDetailsView) {
         this.context = context;
@@ -48,6 +42,15 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
         this.listItemsIcons= listItemsIcons;
         this.listItemMenu= listItemMenu;
         this.customItemDetailsView = customItemDetailsView;
+    }
+
+    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu,ArrayList<String> defadefaultListItemsDetails) {
+        this.context = context;
+        this.listItemsTitles = listItemsTitles;
+        this.listData= listData;
+        this.listItemsIcons= listItemsIcons;
+        this.listItemMenu= listItemMenu;
+        this.defaultListItemsDetails = defadefaultListItemsDetails;
     }
 
     @Override
@@ -111,6 +114,8 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
         if (convertView == null && customItemDetailsView==0){
                 convertView = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
                 ((TextView) convertView.findViewById(R.id.listTitle_text)).setText(title);
+                if (defaultListItemsDetails!=null)
+                    ((TextView) convertView.findViewById(R.id.itemDetails)).setText(defaultListItemsDetails.get(groupPosition));
                 ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(itemIcon);
                 if(listItemMenu!=null)
                     ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);

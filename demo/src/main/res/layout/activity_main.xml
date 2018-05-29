@@ -16,6 +16,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/customUiBtn0"
+        android:text="Expandit listview 0" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/customUiBtn1"
         android:text="Expandit listview 1" />
     <Button

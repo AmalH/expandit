@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -16,7 +15,7 @@ import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.E
 public class MainActivity extends Activity {
 
 
-    private ArrayList<String> listItemsTitles;
+    private ArrayList<String> listItemsTitles,defaultListItemsDetails;
     private HashMap<Integer,ArrayList> listData;
     private ArrayList<Integer> listItemsIcons;
     private MenuBuilder myMenu;
@@ -29,6 +28,9 @@ public class MainActivity extends Activity {
 
         listItemsTitles =  new ArrayList<>(Arrays.asList("Overview","Getting started","Basics","Classes and objects","Functions and lambdas"
         ,"Others","Java Interop","Javascript"));
+
+        defaultListItemsDetails =  new ArrayList<>(Arrays.asList("description of item 1","description of item 2","description of item 3","description of item 4","description of item 5"
+                ,"description of item 6","description of item 7","description of item 8"));
 
         listItemsIcons =  new ArrayList<>(Arrays.asList(R.drawable.ic_overview,R.drawable.ic_start,R.drawable.ic_basics,R.drawable.ic_classesobjects
         ,R.drawable.ic_functions,R.drawable.ic_others,R.drawable.ic_java,R.drawable.ic_javascript));
@@ -50,35 +52,47 @@ public class MainActivity extends Activity {
         myMenu = new MenuBuilder(getApplicationContext());
         myMenu.add(R.menu.my_menu);
 
+        /**-------------------------------------- default list  ------------------------------------**/
         (findViewById(R.id.defaultUiBtn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,defaultListItemsDetails)).show();
+            }
+        });
+
+        /**-------------------------------------- custom list 1 ------------------------------------**/
+        (findViewById(R.id.customUiBtn0)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ExpanditList myList = new ExpanditList(MainActivity.this);
                 myList.setTitle("Test A");
                 myList.setListItemsTitles(listItemsTitles);
                 myList.setListItemsIcons(listItemsIcons);
-                myList.setListData(listData);
-                myList.setListItemMenu(myMenu);
+                //myList.setListData(listData);
+                //myList.setListItemMenu(myMenu);
                 myList.show();
-                Log.d("AAA ","A "+myList.getListData().get(1).toString());
+               /* Log.d("AAA ","A "+myList.getListData().get(1).toString());
                 Log.d("Titles ",myList.getListItemsTitles().toString());
                 Log.d("Icons ",myList.getListItemsIcons().toString());
-                Log.d("Title ",myList.getTitle());
+                Log.d("Title ",myList.getTitle());*/
             }
         });
 
+        /**-------------------------------------- custom details 1------------------------------------**/
         (findViewById(R.id.customUiBtn1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
+                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
             }
         });
 
+        /**-------------------------------------- custom details 2 ------------------------------------**/
         (findViewById(R.id.customUiBtn2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
+                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
             }
         });
     }
+
 }
