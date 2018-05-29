@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -52,21 +53,31 @@ public class MainActivity extends Activity {
         (findViewById(R.id.defaultUiBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu)).show();
+                ExpanditList myList = new ExpanditList(MainActivity.this);
+                myList.setTitle("Test A");
+                myList.setListItemsTitles(listItemsTitles);
+                myList.setListItemsIcons(listItemsIcons);
+                myList.setListData(listData);
+                myList.setListItemMenu(myMenu);
+                myList.show();
+                Log.d("AAA ","A "+myList.getListData().get(1).toString());
+                Log.d("Titles ",myList.getListItemsTitles().toString());
+                Log.d("Icons ",myList.getListItemsIcons().toString());
+                Log.d("Title ",myList.getTitle());
             }
         });
 
         (findViewById(R.id.customUiBtn1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
+             //   (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
             }
         });
 
         (findViewById(R.id.customUiBtn2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
+               // (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
             }
         });
     }

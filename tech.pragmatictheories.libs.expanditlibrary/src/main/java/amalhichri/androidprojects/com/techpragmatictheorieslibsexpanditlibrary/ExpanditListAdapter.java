@@ -27,6 +27,11 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     private ArrayList<Integer> listItemsIcons;
     private MenuBuilder listItemMenu;
     private int customItemDetailsView=0;
+    private int  itemIcon;
+
+    public ExpanditListAdapter(Context context){
+        this.context = context;
+    }
 
     public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu) {
         this.context = context;
@@ -47,7 +52,10 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return this.listData.get(groupPosition).get(childPosition);
+        if(listData.size()==0)
+            return 0;
+        else
+            return this.listData.get(groupPosition).get(childPosition);
     }
 
     @Override
@@ -67,7 +75,12 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this.listData.get(groupPosition).size();
+
+        if(this.listData.size()==0)
+            return 0;
+        else
+            return this.listData.get(groupPosition).size();
+
     }
 
     @Override
@@ -77,7 +90,10 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return this.listItemsTitles.size();
+        if(this.listItemsTitles==null)
+            return 0;
+        else
+            return this.listItemsTitles.size();
     }
 
     @Override
@@ -89,13 +105,15 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
 
         String title = (String) getGroup(groupPosition);
-        final int  courseIcon = listItemsIcons.get(groupPosition);
+        if(listItemsIcons.size()>0)
+            itemIcon = listItemsIcons.get(groupPosition);
 
         if (convertView == null && customItemDetailsView==0){
                 convertView = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
                 ((TextView) convertView.findViewById(R.id.listTitle_text)).setText(title);
-                ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
-                ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
+                ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(itemIcon);
+                if(listItemMenu!=null)
+                    ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
             }
             else if(convertView == null && customItemDetailsView!=0){
                 Log.d("TEST","No No");
@@ -107,7 +125,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
                 if(viewToAdd.getParent()!=null)
                     ((ViewGroup)viewToAdd.getParent()).removeView(viewToAdd);
                 ((LinearLayout)convertView.findViewById(R.id.itemDetailsContainer)).addView(viewToAdd);
-                ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(courseIcon);
+                ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(itemIcon);
                 ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
             }
         return convertView;
