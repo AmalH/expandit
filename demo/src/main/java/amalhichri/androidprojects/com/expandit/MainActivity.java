@@ -2,15 +2,18 @@ package amalhichri.androidprojects.com.expandit;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.RadioButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.ExpanditList;
+import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.ExpanditDialogList;
 
 public class MainActivity extends Activity {
 
@@ -19,6 +22,7 @@ public class MainActivity extends Activity {
     private HashMap<Integer,ArrayList> listData;
     private ArrayList<Integer> listItemsIcons;
     private MenuBuilder myMenu;
+    private static boolean isDialog;
 
     @SuppressLint({"RestrictedApi", "ResourceType"})
     @Override
@@ -53,11 +57,37 @@ public class MainActivity extends Activity {
         myMenu.add(R.string.menuitem1);
         myMenu.add(R.string.menuitem1);
 
+        /**-------------------------------------- list type  ------------------------------------**/
+
+        ((RadioButton)findViewById(R.id.listAsDialogChkbx)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    isDialog=true;
+                if(!isChecked)
+                    isDialog=false;
+                    }
+        });
+
+        ((RadioButton)findViewById(R.id.listAsActivtyChkbx)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    isDialog=false;
+                if(!isChecked)
+                    isDialog=true;
+            }
+        });
         /**-------------------------------------- default list  ------------------------------------**/
         (findViewById(R.id.defaultUiBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,defaultListItemsDetails)).show();
+                if (isDialog)
+                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,defaultListItemsDetails)).show();
+                if (!isDialog){
+                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                }
+
             }
         });
 
@@ -65,17 +95,23 @@ public class MainActivity extends Activity {
         (findViewById(R.id.customUiBtn0)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExpanditList myList = new ExpanditList(MainActivity.this);
-                myList.setTitle("Test A");
-                myList.setListItemsTitles(listItemsTitles);
-                myList.setListItemsIcons(listItemsIcons);
-                //myList.setListData(listData);
-                //myList.setListItemMenu(myMenu);
-                myList.show();
+                if(isDialog){
+                    ExpanditDialogList myList = new ExpanditDialogList(MainActivity.this);
+                    myList.setTitle("Test A");
+                    myList.setListItemsTitles(listItemsTitles);
+                    myList.setListItemsIcons(listItemsIcons);
+                    //myList.setListData(listData);
+                    //myList.setListItemMenu(myMenu);
+                    myList.show();
                /* Log.d("AAA ","A "+myList.getListData().get(1).toString());
                 Log.d("Titles ",myList.getListItemsTitles().toString());
                 Log.d("Icons ",myList.getListItemsIcons().toString());
                 Log.d("Title ",myList.getTitle());*/
+                }
+                if (!isDialog){
+                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                }
+
             }
         });
 
@@ -83,7 +119,12 @@ public class MainActivity extends Activity {
         (findViewById(R.id.customUiBtn1)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
+                if(isDialog){
+                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
+                }
+                if (!isDialog){
+                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                }
             }
         });
 
@@ -91,7 +132,12 @@ public class MainActivity extends Activity {
         (findViewById(R.id.customUiBtn2)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (new ExpanditList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
+                if(isDialog){
+                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
+                }
+                if (!isDialog){
+                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                }
             }
         });
     }

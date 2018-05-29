@@ -3,11 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="25dp"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".MainActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Expandit listview demo"
+        android:textSize="14pt"/>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+        <RadioButton
+            android:id="@+id/listAsDialogChkbx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="Show Exapndit as dialog"
+            android:textSize="15dp"
+            tools:ignore="MissingPrefix,NewApi"
+            android:checked="false"
+            style="@android:style/Widget.Material.CompoundButton.CheckBox"/>
+        <RadioButton
+            android:id="@+id/listAsActivtyChkbx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Show Expandit in new activiy"
+            android:textSize="15dp"
+            android:checked="false"
+            tools:ignore="MissingPrefix,NewApi"
+            style="@android:style/Widget.Material.CompoundButton.CheckBox"/>
+    </RadioGroup>
     <Button
         android:id="@+id/defaultUiBtn"
         android:layout_width="match_parent"
