@@ -2,17 +2,18 @@ package amalhichri.androidprojects.com.expandit;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.view.menu.MenuBuilder;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.ExpanditActivityList;
 import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.ExpanditDialogList;
 
 public class MainActivity extends Activity {
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
     private HashMap<Integer,ArrayList> listData;
     private ArrayList<Integer> listItemsIcons;
     private MenuBuilder myMenu;
-    private static boolean isDialog;
+    private static boolean isDialog=true;
 
     @SuppressLint({"RestrictedApi", "ResourceType"})
     @Override
@@ -55,7 +56,8 @@ public class MainActivity extends Activity {
         };
         myMenu = new MenuBuilder(getApplicationContext());
         myMenu.add(R.string.menuitem1);
-        myMenu.add(R.string.menuitem1);
+        myMenu.add(R.string.menuitem2);
+
 
         /**-------------------------------------- list type  ------------------------------------**/
 
@@ -85,7 +87,10 @@ public class MainActivity extends Activity {
                 if (isDialog)
                     (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,defaultListItemsDetails)).show();
                 if (!isDialog){
-                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,defaultListItemsDetails));
+                    (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                 }
 
             }
@@ -96,6 +101,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(isDialog){
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
                     ExpanditDialogList myList = new ExpanditDialogList(MainActivity.this);
                     myList.setTitle("Test A");
                     myList.setListItemsTitles(listItemsTitles);
@@ -109,7 +115,10 @@ public class MainActivity extends Activity {
                 Log.d("Title ",myList.getTitle());*/
                 }
                 if (!isDialog){
-                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,defaultListItemsDetails));
+                    (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                 }
 
             }
@@ -120,10 +129,14 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(isDialog){
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
                     (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view)).show();
                 }
                 if (!isDialog){
-                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view));
+                    (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -133,13 +146,29 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(isDialog){
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
                     (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
                 }
                 if (!isDialog){
-                    MainActivity.this.startActivity(new Intent(MainActivity.this,ExpanditListDemo.class));
+                    (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2));
+                    (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                 }
             }
         });
-    }
+
+
+        /**-------------------------------------- back button ------------------------------------**/
+        (findViewById(R.id.backToMainBtn)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
+                (findViewById(R.id.expanditLvwContainer)).setVisibility(View.GONE);
+                (findViewById(R.id.backToMainBtn)).setVisibility(View.GONE);
+            }
+        });
+
+}
 
 }

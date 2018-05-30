@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ExpanditList extends ExpandableListView {
+public class ExpanditActivityList extends ExpandableListView {
 
     private ArrayList<String> listItemsTitles=new ArrayList<>();
     private HashMap<Integer, ArrayList> listData= new HashMap<>();
@@ -20,13 +20,13 @@ public class ExpanditList extends ExpandableListView {
     private int customDetailsView;
 
 
-    public ExpanditList(Context context) {
+    public ExpanditActivityList(Context context) {
         super(context);
         this.setAdapter(new ExpanditListAdapter(context));
     }
 
 
-    public ExpanditList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, MenuBuilder listItemMenu, int customDetailsView) {
+    public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, MenuBuilder listItemMenu, int customDetailsView) {
 
         super(context);
         this.listItemsIcons = listItemsIcons;
@@ -34,11 +34,11 @@ public class ExpanditList extends ExpandableListView {
         this.listItemsIcons = listItemsIcons;
         this.listItemMenu= listItemMenu;
         this.customDetailsView= customDetailsView;
-        ((TextView)findViewById(R.id.listTitle)).setText(title);
+      //  ((TextView)findViewById(R.id.listTitle)).setText(title);
         this.setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listItemMenu,customDetailsView));
     }
 
-    public ExpanditList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, MenuBuilder listItemMenu, ArrayList<String> defaultListItemsDetails) {
+    public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, MenuBuilder listItemMenu, ArrayList<String> defaultListItemsDetails) {
 
         super(context);
         this.listItemsIcons = listItemsIcons;
@@ -46,7 +46,7 @@ public class ExpanditList extends ExpandableListView {
         this.listItemsIcons = listItemsIcons;
         this.listItemMenu= listItemMenu;
         this.defaultListItemsDetails= defaultListItemsDetails;
-        ((TextView)findViewById(R.id.listTitle)).setText(title);
+//        ((TextView)findViewById(R.id.listTitle)).setText(title);
         this.setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listItemMenu,defaultListItemsDetails));
     }
 

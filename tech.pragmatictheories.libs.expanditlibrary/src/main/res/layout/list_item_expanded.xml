@@ -12,7 +12,6 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:paddingLeft="8dp"
-        android:textSize="16dp"
-        android:text="test test"/>
+        android:textSize="14dp"/>
 
 </LinearLayout>
