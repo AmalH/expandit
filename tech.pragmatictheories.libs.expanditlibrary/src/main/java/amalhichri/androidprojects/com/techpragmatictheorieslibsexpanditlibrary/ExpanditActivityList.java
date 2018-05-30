@@ -2,7 +2,8 @@ package amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.view.menu.MenuBuilder;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
@@ -15,69 +16,76 @@ public class ExpanditActivityList extends ExpandableListView {
     private HashMap<Integer, ArrayList> listData= new HashMap<>();
     private ArrayList<Integer> listItemsIcons = new ArrayList<>();
     private ArrayList<String> defaultListItemsDetails = new ArrayList<>();
-    private MenuBuilder listItemMenu;
+    private int listMenuId;
     private String title;
     private int customDetailsView;
-
+    private View headerView;
 
     public ExpanditActivityList(Context context) {
         super(context);
+        headerView = LayoutInflater.from(context).inflate(R.layout.activitylist_header,null);
         this.setAdapter(new ExpanditListAdapter(context));
     }
 
 
-    public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, MenuBuilder listItemMenu, int customDetailsView) {
+    public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, int listMenuId, int customDetailsView) {
 
         super(context);
         this.listItemsIcons = listItemsIcons;
         this.listData = listData;
         this.listItemsIcons = listItemsIcons;
-        this.listItemMenu= listItemMenu;
+        this.listMenuId= listMenuId;
         this.customDetailsView= customDetailsView;
-      //  ((TextView)findViewById(R.id.listTitle)).setText(title);
-        this.setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listItemMenu,customDetailsView));
+        this.headerView = LayoutInflater.from(context).inflate(R.layout.activitylist_header,null);
+        ((TextView)this.headerView.findViewById(R.id.listHeader)).setText(title);
+        this.setHeaderDividersEnabled(false);
+        this.addHeaderView(headerView);
+        this.setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,customDetailsView));
     }
 
-    public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, MenuBuilder listItemMenu, ArrayList<String> defaultListItemsDetails) {
+    public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, int listMenuId, ArrayList<String> defaultListItemsDetails) {
 
         super(context);
         this.listItemsIcons = listItemsIcons;
         this.listData = listData;
         this.listItemsIcons = listItemsIcons;
-        this.listItemMenu= listItemMenu;
+        this.listMenuId= listMenuId;
         this.defaultListItemsDetails= defaultListItemsDetails;
-//        ((TextView)findViewById(R.id.listTitle)).setText(title);
-        this.setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listItemMenu,defaultListItemsDetails));
+        this.headerView = LayoutInflater.from(context).inflate(R.layout.activitylist_header,null);
+        ((TextView)headerView.findViewById(R.id.listHeader)).setText(title);
+        this.setHeaderDividersEnabled(false);
+        this.addHeaderView(headerView);
+        this.setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails));
     }
 
 
-    public void setListItemMenu(MenuBuilder listItemMenu) {
-        this.listItemMenu = listItemMenu;
-        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listItemMenu,0));
+    public void setListItemMenu(int listMenuId) {
+        this.listMenuId = listMenuId;
+        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listMenuId,0));
     }
 
     public void setListItemsTitles(ArrayList<String> listItemsTitles) {
         this.listItemsTitles = listItemsTitles;
-        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listItemMenu,0));
-        // ( (BaseExpandableListAdapter)((ExpandableListView)this.findViewById(R.id.expandableLvw)).getExpandableListAdapter()).notifyDataSetChanged();
+        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listMenuId,0));
     }
 
     public void setListData(HashMap<Integer, ArrayList> listData) {
         this.listData = listData;
-        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listItemMenu,0));
+        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listMenuId,0));
 
     }
 
     public void setListItemsIcons(ArrayList<Integer> listItemsIcons) {
         this.listItemsIcons = listItemsIcons;
-         this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listItemMenu,0));
+         this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listMenuId,0));
     }
 
     public void setTitle(String title) {
         this.title = title;
-        ((TextView)findViewById(R.id.listTitle)).setText(title);
-        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listItemMenu,0));
-        //  ( (BaseExpandableListAdapter)((ExpandableListView)this.findViewById(R.id.expandableLvw)).getExpandableListAdapter()).notifyDataSetChanged();
+        ((TextView)this.headerView.findViewById(R.id.listHeader)).setText(title);
+        this.setHeaderDividersEnabled(false);
+        this.addHeaderView(headerView);
+        this.setAdapter(new ExpanditListAdapter(getContext(),listItemsTitles,listData,listItemsIcons,listMenuId,0));
     }
 
     public String getTitle() {
@@ -96,8 +104,8 @@ public class ExpanditActivityList extends ExpandableListView {
         return listItemsIcons;
     }
 
-    public MenuBuilder getListItemMenu() {
-        return listItemMenu;
+    public int getListItemMenu() {
+        return listMenuId;
     }
 
 }

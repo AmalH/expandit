@@ -1,8 +1,6 @@
 package amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary;
 
 import android.content.Context;
-import android.support.v7.view.menu.MenuBuilder;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +24,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     private HashMap<Integer, ArrayList> listData;
     private ArrayList<Integer> listItemsIcons;
     private ArrayList<String> defaultListItemsDetails;
-    private MenuBuilder listItemMenu;
+    private int listMenuId;
     private int customItemDetailsView=0;
     private int  itemIcon;
 
@@ -35,21 +33,21 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
     }
 
 
-    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu,int customItemDetailsView) {
+    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,int listMenuId,int customItemDetailsView) {
         this.context = context;
         this.listItemsTitles = listItemsTitles;
         this.listData= listData;
         this.listItemsIcons= listItemsIcons;
-        this.listItemMenu= listItemMenu;
+        this.listMenuId = listMenuId;
         this.customItemDetailsView = customItemDetailsView;
     }
 
-    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,MenuBuilder listItemMenu,ArrayList<String> defadefaultListItemsDetails) {
+    public ExpanditListAdapter(Context context,List listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons,int listMenuId,ArrayList<String> defadefaultListItemsDetails) {
         this.context = context;
         this.listItemsTitles = listItemsTitles;
         this.listData= listData;
         this.listItemsIcons= listItemsIcons;
-        this.listItemMenu= listItemMenu;
+        this.listMenuId = listMenuId;
         this.defaultListItemsDetails = defadefaultListItemsDetails;
     }
 
@@ -117,12 +115,10 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
                 if (defaultListItemsDetails!=null)
                     ((TextView) convertView.findViewById(R.id.itemDetails)).setText(defaultListItemsDetails.get(groupPosition));
                 ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(itemIcon);
-                if(listItemMenu!=null)
-                    ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
+                if(listMenuId!=0)
+                    ((ListItemView) convertView. findViewById(R.id.listItemMenu)).inflateMenu(listMenuId);
             }
             else if(convertView == null && customItemDetailsView!=0){
-                Log.d("TEST","No No");
-                Log.d("TEST 2","No "+String.valueOf(customItemDetailsView));
                 convertView = ((LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.list_item, null);
                 ((TextView) convertView.findViewById(R.id.listTitle_text)).setText(title);
                 (convertView.findViewById(R.id.itemDetails)).setVisibility(View.GONE);
@@ -131,7 +127,7 @@ public class ExpanditListAdapter extends BaseExpandableListAdapter {
                     ((ViewGroup)viewToAdd.getParent()).removeView(viewToAdd);
                 ((LinearLayout)convertView.findViewById(R.id.itemDetailsContainer)).addView(viewToAdd);
                 ((ImageView)convertView.findViewById(R.id.itemIcon)).setImageResource(itemIcon);
-                ((ListItemView) convertView. findViewById(R.id.listItemMenu)).setMenu(listItemMenu);
+                ((ListItemView) convertView. findViewById(R.id.listItemMenu)).inflateMenu(listMenuId);
             }
         return convertView;
         }

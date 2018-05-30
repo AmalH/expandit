@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Expandit Demo</string>
-    <string name="menuitem1"> Add to favs</string>
-    <string name="menuitem2"> Share</string>
 </resources>
