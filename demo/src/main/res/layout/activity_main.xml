@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="30dp"
+    android:layout_marginTop="40dp"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Expandit Listview Demo"
-            android:textSize="10pt"
+            android:textSize="14pt"
             android:textStyle="bold"
             android:textColor="#000"/>
     </RelativeLayout>
@@ -29,9 +29,8 @@
         android:layout_height="wrap_content"
         android:paddingRight="25dp"
         android:paddingLeft="25dp"
-        android:paddingTop="35dp"
+        android:paddingTop="40dp"
         android:layout_marginBottom="10dp"
-        android:gravity="center_horizontal"
         android:orientation="vertical">
     <RadioGroup
         android:layout_width="wrap_content"
@@ -42,8 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:text="Show Expandit as a dialog"
-            android:textSize="15dp"
+            android:text="Show Expandit list as a dialog"
+            android:textSize="16dp"
             tools:ignore="MissingPrefix,NewApi"
             android:checked="true"
             style="@android:style/Widget.Material.CompoundButton.CheckBox"/>
@@ -51,9 +50,9 @@
             android:id="@+id/listAsActivtyChkbx"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:text="Show Expandit in activiy"
-            android:textSize="15dp"
+            android:paddingTop="7dp"
+            android:text="Show Expandit list in activiy"
+            android:textSize="16dp"
             android:checked="false"
             tools:ignore="MissingPrefix,NewApi"
             style="@android:style/Widget.Material.CompoundButton.CheckBox"/>
@@ -63,7 +62,7 @@
         android:id="@+id/defaultUiBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="35dp"
         android:layout_marginBottom="25dp"
         android:background="@color/colorPrimary"
         android:textAllCaps="false"

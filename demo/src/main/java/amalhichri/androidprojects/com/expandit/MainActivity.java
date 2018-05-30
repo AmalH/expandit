@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
     private ArrayList<String> listItemsTitles,defaultListItemsDetails;
     private HashMap<Integer,ArrayList> listData;
-    private ArrayList<Integer> listItemsIcons;
+    private ArrayList<Integer> listItemsIcons,listItemsIcons2;
     private MenuBuilder myMenu;
     private static boolean isDialog=true;
 
@@ -39,6 +39,9 @@ public class MainActivity extends Activity {
 
         listItemsIcons =  new ArrayList<>(Arrays.asList(R.drawable.ic_overview,R.drawable.ic_start,R.drawable.ic_basics,R.drawable.ic_classesobjects
         ,R.drawable.ic_functions,R.drawable.ic_others,R.drawable.ic_java,R.drawable.ic_javascript));
+
+        listItemsIcons2 =  new ArrayList<>(Arrays.asList(R.drawable.ic_movie1,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie2
+                ,R.drawable.ic_movie1,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie2));
 
         final ArrayList<String > expandedItems1 =  new ArrayList<>(Arrays.asList("chapter 1", "chapter 2","chapter 2"));
         final ArrayList<String > expandedItems2 =  new ArrayList<>(Arrays.asList("1st chapter", "2nd chapter","3d chapter"));
@@ -147,11 +150,11 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 if(isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
-                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2)).show();
+                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons2,myMenu,R.layout.custom_item_details_view2)).show();
                 }
                 if (!isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
-                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,myMenu,R.layout.custom_item_details_view2));
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons2,myMenu,R.layout.custom_item_details_view2));
                     (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                 }
@@ -164,6 +167,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
+                ((LinearLayout)findViewById(R.id.expanditLvwContainer)).removeAllViews();
                 (findViewById(R.id.expanditLvwContainer)).setVisibility(View.GONE);
                 (findViewById(R.id.backToMainBtn)).setVisibility(View.GONE);
             }
