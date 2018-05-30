@@ -25,8 +25,11 @@ public class MainActivity extends Activity {
     private ArrayList<String> listItemsTitles,defaultListItemsDetails;
     private HashMap<Integer,ArrayList> listData;
     private ArrayList<Integer> listItemsIcons,listItemsIcons2;
+    private ArrayList<String > expandedItems1,expandedItems2;
     private int listMenuId;
     private static boolean isDialog=true;
+    private Animation fadeIn;
+    private AnimationSet animation;
 
     @SuppressLint({"RestrictedApi", "ResourceType"})
     @Override
@@ -46,8 +49,8 @@ public class MainActivity extends Activity {
         listItemsIcons2 =  new ArrayList<>(Arrays.asList(R.drawable.ic_movie1,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie2
                 ,R.drawable.ic_movie1,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie2));
 
-        final ArrayList<String > expandedItems1 =  new ArrayList<>(Arrays.asList("chapter 1", "chapter 2","chapter 2"));
-        final ArrayList<String > expandedItems2 =  new ArrayList<>(Arrays.asList("1st chapter", "2nd chapter","3d chapter"));
+        expandedItems1 =  new ArrayList<>(Arrays.asList("chapter 1", "chapter 2","chapter 2"));
+        expandedItems2 =  new ArrayList<>(Arrays.asList("1st chapter", "2nd chapter","3d chapter"));
         listData = new HashMap<Integer,ArrayList>(){
             {
                 put(0,expandedItems1);
@@ -62,6 +65,12 @@ public class MainActivity extends Activity {
         };
 
         listMenuId = R.menu.my_menu;
+
+        fadeIn = new AlphaAnimation(0, 1);
+        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+        fadeIn.setDuration(2000);
+        animation = new AnimationSet(false); //change to false
+        animation.addAnimation(fadeIn);
         /**-------------------------------------- list type  ------------------------------------**/
 
         ((RadioButton)findViewById(R.id.listAsDialogChkbx)).setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -96,6 +105,8 @@ public class MainActivity extends Activity {
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.backToMainBtn)).setAnimation(animation);
+                    (findViewById(R.id.expanditLvwContainer)).setAnimation(animation);
                 }
             }
         });
@@ -123,7 +134,7 @@ public class MainActivity extends Activity {
                     ExpanditActivityList myList = new ExpanditActivityList(MainActivity.this);
                     myList.setListItemsTitles(listItemsTitles);
                     myList.setListItemsIcons(listItemsIcons);
-                    myList.setTitle("List List");
+                    myList.setTitle("Unexpandable..");
                     //myList.setListData(listData);
                     //myList.setListItemMenu(defaultListMenu);
                     ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(myList);
@@ -131,18 +142,13 @@ public class MainActivity extends Activity {
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.backToMainBtn)).setAnimation(animation);
+                    (findViewById(R.id.expanditLvwContainer)).setAnimation(animation);
                 }
 
             }
         });
 
-
-
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-        fadeIn.setDuration(1000);
-        final AnimationSet animation = new AnimationSet(false); //change to false
-        animation.addAnimation(fadeIn);
         /**-------------------------------------- custom details 1------------------------------------**/
         (findViewById(R.id.customUiBtn1)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,9 +159,11 @@ public class MainActivity extends Activity {
                 }
                 if (!isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
-                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"List Test List",listItemsTitles,listData,listItemsIcons,listMenuId,R.layout.custom_item_details_view));
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"custom item details 1",listItemsTitles,listData,listItemsIcons,listMenuId,R.layout.custom_item_details_view));
                     (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
+                    (findViewById(R.id.backToMainBtn)).setAnimation(animation);
+                    (findViewById(R.id.expanditLvwContainer)).setAnimation(animation);
                 }
             }
         });
@@ -170,7 +178,7 @@ public class MainActivity extends Activity {
                 }
                 if (!isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
-                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"Test HHHH",listItemsTitles,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2));
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"custom item details 2",listItemsTitles,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2));
                     (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.backToMainBtn)).setAnimation(animation);
@@ -179,13 +187,13 @@ public class MainActivity extends Activity {
             }
         });
 
-
         /**-------------------------------------- back button ------------------------------------**/
         (findViewById(R.id.backToMainBtn)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
                 (findViewById(R.id.btnsContainer)).setAnimation(animation);
+                ((LinearLayout)findViewById(R.id.expanditLvwContainer)).removeAllViews();
                 (findViewById(R.id.expanditLvwContainer)).setVisibility(View.GONE);
                 (findViewById(R.id.backToMainBtn)).setVisibility(View.GONE);
             }
