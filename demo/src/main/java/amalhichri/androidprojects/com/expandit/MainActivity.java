@@ -1,6 +1,5 @@
 package amalhichri.androidprojects.com.expandit;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,7 +21,7 @@ import amalhichri.androidprojects.com.techpragmatictheorieslibsexpanditlibrary.E
 public class MainActivity extends Activity {
 
 
-    private ArrayList<String> listItemsTitles,defaultListItemsDetails;
+    private ArrayList<String> listItemsTitles,defaultListItemsDetails,listItemsTitles2;
     private HashMap<Integer,ArrayList> listData;
     private ArrayList<Integer> listItemsIcons,listItemsIcons2;
     private ArrayList<String > expandedItems1,expandedItems2;
@@ -31,7 +30,6 @@ public class MainActivity extends Activity {
     private Animation fadeIn;
     private AnimationSet animation;
 
-    @SuppressLint({"RestrictedApi", "ResourceType"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,14 +38,17 @@ public class MainActivity extends Activity {
         listItemsTitles =  new ArrayList<>(Arrays.asList("Overview","Getting started","Basics","Classes and objects","Functions and lambdas"
         ,"Others","Java Interop","Javascript"));
 
+        listItemsTitles2 =  new ArrayList<>(Arrays.asList("The pursuit of happiness","Collateral Beauty","Arrival","Assassin's Creed","Revolutionary road"
+                ,"Into the wild","Eat pray love","Divergent"));
+
         defaultListItemsDetails =  new ArrayList<>(Arrays.asList("description of item 1","description of item 2","description of item 3","description of item 4","description of item 5"
                 ,"description of item 6","description of item 7","description of item 8"));
 
         listItemsIcons =  new ArrayList<>(Arrays.asList(R.drawable.ic_overview,R.drawable.ic_start,R.drawable.ic_basics,R.drawable.ic_classesobjects
         ,R.drawable.ic_functions,R.drawable.ic_others,R.drawable.ic_java,R.drawable.ic_javascript));
 
-        listItemsIcons2 =  new ArrayList<>(Arrays.asList(R.drawable.ic_movie1,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie2
-                ,R.drawable.ic_movie1,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie2));
+        listItemsIcons2 =  new ArrayList<>(Arrays.asList(R.drawable.ic_movie3,R.drawable.ic_movie2,R.drawable.ic_movie1,R.drawable.ic_movie4
+                ,R.drawable.ic_movie5,R.drawable.ic_movie6,R.drawable.ic_movie8,R.drawable.ic_movie9));
 
         expandedItems1 =  new ArrayList<>(Arrays.asList("chapter 1", "chapter 2","chapter 2"));
         expandedItems2 =  new ArrayList<>(Arrays.asList("1st chapter", "2nd chapter","3d chapter"));
@@ -155,7 +156,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 if(isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
-                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons,listMenuId,R.layout.custom_item_details_view)).show();
+                    (new ExpanditDialogList(MainActivity.this,"custom item details 1",listItemsTitles,listData,listItemsIcons,listMenuId,R.layout.custom_item_details_view)).show();
                 }
                 if (!isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
@@ -174,11 +175,11 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 if(isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.VISIBLE);
-                    (new ExpanditDialogList(MainActivity.this,"Test list",listItemsTitles,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2)).show();
+                    (new ExpanditDialogList(MainActivity.this,"custom item details 2",listItemsTitles2,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2)).show();
                 }
                 if (!isDialog){
                     (findViewById(R.id.btnsContainer)).setVisibility(View.GONE);
-                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"custom item details 2",listItemsTitles,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2));
+                    ((LinearLayout)findViewById(R.id.expanditLvwContainer)).addView(new ExpanditActivityList(MainActivity.this,"custom item details 2",listItemsTitles2,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2));
                     (findViewById(R.id.backToMainBtn)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.expanditLvwContainer)).setVisibility(View.VISIBLE);
                     (findViewById(R.id.backToMainBtn)).setAnimation(animation);
