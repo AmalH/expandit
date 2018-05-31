@@ -3,7 +3,9 @@ Expandit is a library for Android that offers a highly customizable expandable l
 
 ## Demo
 
-//
+<p align="center">
+<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoAll.gif"/>
+</p>
 
 ## Features
 
