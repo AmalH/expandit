@@ -20,13 +20,8 @@ Using Expnadit:
 
 ```
    
-* ### Using Expandit as a list (in-activity)
-      * Example 1
+* ### Using Expandit as a dialog
+    * Example 1
 ```Java
 
 ```
-   * Example 2
-```Java
-
-```
-
