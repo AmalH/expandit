@@ -3,9 +3,12 @@ Expandit is a library for Android that offers a highly customizable expandable l
 
 ## Demo
 
+
+
+
 <p align="center">
-<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoAll.gif"/>
-</p>
+<a href="https://www.youtube.com/watch?v=2GJ8uRUC3uw"><img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/></a>
+   </p>
 
 ## QuickStart
 
@@ -16,12 +19,16 @@ implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
 Using Expnadit:
 * ### Using Expandit as a dialog
     * Example 1
-```Java
-
-```
+    ```Java
+    ```
+     * Example 2
+    ```Java
+    ```
    
 * ### Using Expandit as a dialog
     * Example 1
-```Java
-
-```
+    ```Java
+    ```
+    * Example 2
+    ```Java
+    ```
