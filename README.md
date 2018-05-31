@@ -23,7 +23,7 @@ This video showcases how much you can customize expandit ( using different list 
 
 Include Expandit into the build.gradle file:
 ```Java
-implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
+implementation 'tech.pragmatictheories.libs.expanditlibrary:1.0.0'
 ```
 Using Expandit:
 * ### Using Expandit as a dialog
