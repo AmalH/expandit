@@ -15,21 +15,18 @@ implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
 ```
 Using Expnadit:
 * ### Using Expandit as a dialog
-     * Example 1
-     ```Java
-implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
+    * Example 1
+```Java
+
 ```
-     * Example 2
-     ```Java
-implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
-```
+   
 * ### Using Expandit as a list (in-activity)
-     * Example 1
-     ```Java
-implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
+      * Example 1
+```Java
+
 ```
-     * Example 2
-     ```Java
-implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
+   * Example 2
+```Java
+
 ```
 
