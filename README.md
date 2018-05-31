@@ -3,10 +3,25 @@ Expandit is a library for Android that offers a highly customizable expandable l
 
 ## Demo
 
-//
+<p align="center">
+<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoAll.gif"/>
+</p>
 
-## Features
+## QuickStart
 
-Expandit provides the following features:
+Include Expandit into the build.gradle file:
+```Java
+implementation 'ech.pragmatictheories.libs.expanditlibrary:1.0.0'
+```
+Using Expnadit:
+* ### Using Expandit as a dialog
+    * Example 1
+```Java
 
-## How-to
+```
+   
+* ### Using Expandit as a dialog
+    * Example 1
+```Java
+
+```
