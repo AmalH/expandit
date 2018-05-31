@@ -52,7 +52,7 @@ Using Expandit:
     new ExpanditDialogList(MainActivity.this,"Kotlin       courseslist",listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails)).show()
     
     ```
-    <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/>
+    //screenshot
     
      * Example 2
     ```Java
@@ -63,13 +63,13 @@ Using Expandit:
     //myList.setListItemMenu(defaultListMenu);
     myList.show();
     ```
-    <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/>
+    //screenshot
     
     * Example 3
     ```Java
     new ExpanditDialogList(MainActivity.this,"custom item details2",listItemsTitles2,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2)).show()
     ```
-    <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/>
+    //screenshot
    
 * ### Using Expandit as a list (in-activity)
     * Example 1
@@ -78,8 +78,17 @@ Using Expandit:
     .
     OR
     .
-    (findViewById(R.id.myList)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,customDetailsView))
+    (findViewById(R.id.myList)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails))
     ```
+     //screenshot
+    
     * Example 2
     ```Java
+    addView(new ExpanditActivityList(MainActivity.this,"custom item details 1",listItemsTitles,listData,listItemsIcons,listMenuId,R.layout.custom_item_details_view));
+    .
+    OR
+    .
+    (findViewById(R.id.myList)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,customDetailsView))
     ```
+    
+     //screenshot
