@@ -56,11 +56,29 @@ Using Expandit:
     
      * Example 2
     ```Java
+    ExpanditDialogList myList = new ExpanditDialogList(MainActivity.this);
+    myList.setTitle("Non-expandable!");
+    myList.setListItemsTitles(listItemsTitles);
+    myList.setListItemsIcons(listItemsIcons);
+    //myList.setListItemMenu(defaultListMenu);
+    myList.show();
     ```
+    <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/>
+    
+    * Example 3
+    ```Java
+    new ExpanditDialogList(MainActivity.this,"custom item details2",listItemsTitles2,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2)).show()
+    ```
+    <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/>
    
-* ### Using Expandit as a dialog
+* ### Using Expandit as a list (in-activity)
     * Example 1
     ```Java
+    addView(new ExpanditActivityList(MainActivity.this,"Kotlin courseslist",listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails));
+    .
+    OR
+    .
+    (findViewById(R.id.myList)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,customDetailsView))
     ```
     * Example 2
     ```Java
