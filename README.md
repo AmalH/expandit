@@ -7,7 +7,7 @@ Expandit is a library for Android that offers a highly customizable expandable l
 
 
 <p align="center">
-<a href="https://www.youtube.com/watch?v=2GJ8uRUC3uw"><img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/></a>
+<a href="https://www.youtube.com/watch?v=2GJ8uRUC3uw" target="_blank"><img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/></a>
    </p>
 
 ## QuickStart
