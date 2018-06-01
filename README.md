@@ -7,7 +7,7 @@ Expandit is a library for Android that offers a highly customizable expandable l
 
 
 * ### Sample app
-This video showcases some of Expandit features ( using different list item description view, showing the list as a dialog or in-activity and more, making the list unexpandable and more ) :
+This video showcases some of Expandit features ( using different list item description view, showing the list as a dialog or in-activity, making the list unexpandable and more ) :
    <p align="center">
 <a href="https://www.youtube.com/watch?v=2GJ8uRUC3uw" target="_blank"><img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/demoThumbail.png"/></a>
    </p>
@@ -25,9 +25,10 @@ implementation 'tech.pragmatictheories.libs.expandit:1.0.0'
 ```
 Using Expandit:
 * ### Using Expandit as a dialog
-    * Example 1
+
+ * Example 1
     ```Java
-    ArrayList<String> listItemsTitles =  new ArrayList<>(Arrays.asList("Overview","Getting started","Basics","Classes and objects","Functions and lambdas"
+     ArrayList<String> listItemsTitles =  new ArrayList<>(Arrays.asList("Overview","Getting started","Basics","Classes and objects","Functions and lambdas"
         ,"Others","Java Interop","Javascript"));
     ArrayList<String> defaultListItemsDetails =  new ArrayList<>(Arrays.asList("description of item 1","description of item 2","description of item 3","description of item 4","description of item 5","description of item 6","description of item 7","description of item 8"));
     ArrayList<Integer> listItemsIcons =  new ArrayList< (Arrays.asList(R.drawable.ic_overview,R.drawable.ic_start,R.drawable.ic_basics,R.drawable.ic_classesobjects,R.drawable.ic_functions,R.drawable.ic_others,R.drawable.ic_java,R.drawable.ic_javascript));      
@@ -45,15 +46,25 @@ Using Expandit:
                 put(7,expandedItems8);
             }
         };
-        
-    new ExpanditDialogList(MainActivity.this,"Kotlin       courseslist",listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails)).show()
+    
+    new ExpanditDialogList(MainActivity.this,"custom item details2",listItemsTitles2,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2)).show()
+    ```
+    
+    <p align="center">
+       <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht31.png"/>
+       <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht32.png"/>
+   </p>
+
+    * Example 2 
+    ```Java     
+    new ExpanditDialogList(MainActivity.this, "Kotlin courseslist",listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails)).show()
     
     ```
     <p align="center">
-<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht1.png"/>
+        <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht1.png"/>
    </p>
     
-     * Example 2
+     * Example 3
     ```Java
     ExpanditDialogList myList = new ExpanditDialogList(MainActivity.this);
     myList.setTitle("Non-expandable!");
@@ -63,15 +74,6 @@ Using Expandit:
     myList.show();
     ```
     
-    * Example 3
-    ```Java
-    new ExpanditDialogList(MainActivity.this,"custom item details2",listItemsTitles2,listData,listItemsIcons2,listMenuId,R.layout.custom_item_details_view2)).show()
-    ```
-    
-    <p align="center">
-<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht31.png"/>
-<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht32.png"/>
-   </p>
    
 * ### Using Expandit as a list (in-activity)
     * Example 1
@@ -83,8 +85,8 @@ Using Expandit:
     (findViewById(R.id.myList)).setAdapter(new ExpanditListAdapter(context,listItemsTitles,listData,listItemsIcons,listMenuId,defaultListItemsDetails))
     ```
      <p align="center">
-<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht4.png"/>
-   </p>
+         <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht4.png"/>
+     </p>
     
     * Example 2
     ```Java
@@ -96,7 +98,7 @@ Using Expandit:
     ```
     
     <p align="center">
-<img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht5.png"/>
+      <img src="https://raw.githubusercontent.com/AmalH/expandit/master/screenshots/scrnSht5.png"/>
    </p>
 
 ## Getting help
