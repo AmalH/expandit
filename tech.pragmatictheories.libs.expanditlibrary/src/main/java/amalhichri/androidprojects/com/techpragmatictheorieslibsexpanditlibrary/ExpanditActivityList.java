@@ -27,7 +27,6 @@ public class ExpanditActivityList extends ExpandableListView {
         this.setAdapter(new ExpanditListAdapter(context));
     }
 
-
     public ExpanditActivityList(@NonNull Context context, String title, ArrayList<String> listItemsTitles, HashMap<Integer, ArrayList> listData, ArrayList<Integer> listItemsIcons, int listMenuId, int customDetailsView) {
 
         super(context);

@@ -7,8 +7,7 @@
         >
     </item>
     <item android:id="@+id/action_share"
-        android:title="Share"
-        app:actionProviderClass="android.support.v7.widget.ShareActionProvider">
+        android:title="Share">
     </item>
 
 </menu>
