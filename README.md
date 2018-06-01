@@ -92,3 +92,6 @@ Using Expandit:
     ```
     
      //screenshot
+
+## Getting help
+If you spot a problem you can open an issue here, or alternatively, you can tweet me at @AmalHichrii .
