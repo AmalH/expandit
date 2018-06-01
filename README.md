@@ -26,7 +26,7 @@ implementation 'tech.pragmatictheories.libs.expandit:1.0.0'
 Using Expandit:
 * ### Using Expandit as a dialog
 
- * Example 1
+  * Example 1
     ```Java
      ArrayList<String> listItemsTitles =  new ArrayList<>(Arrays.asList("Overview","Getting started","Basics","Classes and objects","Functions and lambdas"
         ,"Others","Java Interop","Javascript"));
