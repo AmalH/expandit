@@ -21,7 +21,7 @@ The following section presents a screenshot for each code snippet.
 
 Including Expandit into the build.gradle file:
 ```Java
-implementation 'tech.pragmatictheories.libs.expandit:1.0.0'
+implementation 'tech.pragmatictheories.libs:expandit:1.0.0'
 ```
 Using Expandit:
 * ### Using Expandit as a dialog
